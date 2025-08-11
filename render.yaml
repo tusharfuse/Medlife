@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: medlife-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app:app --host 0.0.0.0 --port $PORT"
+    autoDeploy: true
+    plan: free
+
+  - type: web
+    name: medlife-frontend
+    env: node
+    buildCommand: "npm install && npm run build"
+    startCommand: "npx serve -s build -l $PORT"
+    autoDeploy: true
+    plan: free
